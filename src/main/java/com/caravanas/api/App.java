@@ -59,15 +59,21 @@ public final class App extends HttpServlet {
     Json json = new Json();
 
     try {
-      if (request.getParameter("name") == null) {
+      String name = request.getParameter("name");
+
+      if (name == null || name.isEmpty()) {
         throw new Exception("You must send a name in the request.");
       }
 
       Query query = new Query("INSERT Users (name) VALUES (?)");
 
-      query.setString(1, request.getParameter("name"));
+      query.setString(1, name);
 
       query.update();
+
+      json.put("success", "true");
+
+      json.put("payload", name);
     } catch (Exception exception) {
       json.put("error", exception.getMessage());
     } finally {
