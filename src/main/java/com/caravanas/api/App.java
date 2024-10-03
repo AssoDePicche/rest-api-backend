@@ -82,4 +82,45 @@ public final class App extends HttpServlet {
       response.getWriter().flush();
     }
   }
+
+  @Override
+  public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    response.setContentType(Json.CONTENT_TYPE);
+
+    response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+
+    Json json = new Json();
+
+    try {
+      String name = request.getParameter("name");
+
+      if (name == null || name.isEmpty()) {
+        throw new Exception("You must send a name in the request.");
+      }
+
+      String id = request.getParameter("id");
+
+      if (id == null || id.isEmpty()) {
+        throw new Exception("You must send an id in the request.");
+      }
+
+      Query query = new Query("UPDATE Users SET name = ? WHERE id = ?");
+
+      query.setString(1, name);
+
+      query.setString(2, id);
+
+      query.update();
+
+      json.put("success", "true");
+
+      json.put("payload", name);
+    } catch (Exception exception) {
+      json.put("error", exception.getMessage());
+    } finally {
+      response.getWriter().print(json);
+
+      response.getWriter().flush();
+    }
+  }
 }
