@@ -1,4 +1,4 @@
-package com.caravanas.api;
+package com.caravanas.api.v1;
 
 import com.caravanas.api.db.Query;
 import com.caravanas.api.util.Json;
@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/")
-public final class App extends HttpServlet {
+@WebServlet("/api/v1/users")
+public final class Users extends HttpServlet {
   private static final long serialVersionUID = 0L;
 
-  public App() {
+  public Users() {
     super();
   }
-
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     response.setContentType(Json.CONTENT_TYPE);
