@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en" class="h-100" data-bs-theme="dark">
   <head>
@@ -9,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>Caravanas.com</title>
   </head>
+
   <body class="d-flex h-100 text-bg-dark">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto text-center">
