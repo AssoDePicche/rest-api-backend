@@ -1,7 +1,7 @@
 package com.caravanas.api.v1;
 
-import com.caravanas.api.db.Query;
-import com.caravanas.api.util.Json;
+import com.caravanas.db.Query;
+import com.caravanas.util.Json;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

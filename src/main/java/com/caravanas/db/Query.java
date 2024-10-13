@@ -1,4 +1,4 @@
-package com.caravanas.api.db;
+package com.caravanas.db;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

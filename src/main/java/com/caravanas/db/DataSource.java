@@ -1,4 +1,4 @@
-package com.caravanas.api.db;
+package com.caravanas.db;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

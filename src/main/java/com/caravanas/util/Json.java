@@ -1,4 +1,4 @@
-package com.caravanas.api.util;
+package com.caravanas.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,10 +52,10 @@ public final class Json {
       String str = "";
 
       if (isCollection) {
-        str = "\n\t\t'" + item + "',";
+        str = "\n\t\t\"" + item + "\",";
 
       } else {
-        str = "'" + item + "',";
+        str = "\"" + item + "\",";
       }
 
       builder.append(str);
@@ -77,7 +77,7 @@ public final class Json {
     StringBuilder builder = new StringBuilder();
 
     for (String key : map.keySet()) {
-      String str = "\t'" + key + "': " + get(key) + ",\n";
+      String str = "\t\"" + key + "\": " + get(key) + ",\n";
 
       builder.append(str);
     }
