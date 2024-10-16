@@ -59,7 +59,7 @@ public final class Users extends HttpServlet {
     Json json = new Json();
 
     try {
-      String name = request.getParameter("name");
+      String name = request.getHeader("name");
 
       if (name == null || name.isEmpty()) {
         throw new Exception("You must send a name in the request.");
@@ -92,13 +92,13 @@ public final class Users extends HttpServlet {
     Json json = new Json();
 
     try {
-      String name = request.getParameter("name");
+      String name = request.getHeader("name");
 
       if (name == null || name.isEmpty()) {
         throw new Exception("You must send a name in the request.");
       }
 
-      String id = request.getParameter("id");
+      String id = request.getHeader("id");
 
       if (id == null || id.isEmpty()) {
         throw new Exception("You must send an id in the request.");
