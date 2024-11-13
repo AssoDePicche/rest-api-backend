@@ -10,7 +10,7 @@ public interface Repository<T, ID> {
 
   void delete(ID id) throws Exception;
 
-  T save(T object) throws Exception;
+  void save(T object) throws Exception;
 
-  Collection<T> save(Collection<T> objects) throws Exception;
+  void save(Collection<T> objects) throws Exception;
 }
