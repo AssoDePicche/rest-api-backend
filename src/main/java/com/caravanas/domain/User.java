@@ -7,7 +7,7 @@ import com.caravanas.db.Table;
 @Table(name="Users")
 public final class User {
   @Id
-  private int id;
+  private Long id;
 
   @Column
   private String name;
@@ -15,11 +15,11 @@ public final class User {
   public User() {
   }
 
-  public int getID() {
+  public Long getID() {
     return this.id;
   }
 
-  public void setID(int id) {
+  public void setID(Long id) {
     this.id = id;
   }
 
