@@ -1,14 +1,24 @@
 package com.caravanas.api.v1;
 
+import com.caravanas.db.DataSource;
 import com.caravanas.db.Query;
+
+import com.caravanas.domain.User;
+
 import com.caravanas.util.Json;
 
 import java.io.IOException;
+
 import java.nio.charset.StandardCharsets;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +27,16 @@ import javax.servlet.http.HttpServletResponse;
 public final class Users extends HttpServlet {
   private static final long serialVersionUID = 0L;
 
-  public Users() {
+  private Connection connection;
+
+  private Query query;
+
+  public Users() throws Exception {
     super();
+
+    this.connection = DataSource.getConnection();
+
+    this.query = new Query(User.class);
   }
   
   @Override
@@ -30,7 +48,9 @@ public final class Users extends HttpServlet {
     Json json = new Json();
 
     try {
-      ResultSet resultSet = new Query("SELECT * FROM Users").execute();
+      final String SQL = this.query.select().toString();
+
+      ResultSet resultSet = this.connection.prepareStatement(SQL).executeQuery();
       
       json.put("success", "true");
 
@@ -39,8 +59,6 @@ public final class Users extends HttpServlet {
       }
     } catch (Exception exception) {
       json.put("success", "false");
-
-      json.put("payload", "");
 
       json.put("error", exception.getMessage());
     } finally {
@@ -65,11 +83,13 @@ public final class Users extends HttpServlet {
         throw new Exception("You must send a name in the request.");
       }
 
-      Query query = new Query("INSERT Users (name) VALUES (?)");
+      final String SQL = this.query.insert().toString();
 
-      query.setString(1, name);
+      PreparedStatement statement = this.connection.prepareStatement(SQL);
 
-      query.update();
+      statement.setString(1, name);
+
+      statement.executeUpdate();
 
       json.put("success", "true");
 
@@ -104,13 +124,15 @@ public final class Users extends HttpServlet {
         throw new Exception("You must send an id in the request.");
       }
 
-      Query query = new Query("UPDATE Users SET name = ? WHERE id = ?");
+      final String SQL = this.query.update().toString();
 
-      query.setString(1, name);
+      PreparedStatement statement = this.connection.prepareStatement(SQL);
 
-      query.setString(2, id);
+      statement.setString(1, name);
 
-      query.update();
+      statement.setString(2, id);
+
+      statement.executeUpdate();
 
       json.put("success", "true");
 
