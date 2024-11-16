@@ -4,9 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public final class Json {
@@ -22,7 +23,7 @@ public final class Json {
     gson = builder.create();
   }
 
-  private Map<String, List<String>> map = new HashMap<>();
+  private Map<String, Collection<String>> map = new HashMap<>();
 
   public Json() {
   }
@@ -42,30 +43,23 @@ public final class Json {
 
     StringBuilder builder = new StringBuilder();
 
-    boolean isCollection = map.get(key).size() > 1;
+    final boolean HAS_MULTIPLE_VALUES = map.get(key).size() > 1;
 
-    if (isCollection) {
+    final String PREFIX = HAS_MULTIPLE_VALUES ? "\n\t\t\"" : "\"";
+
+    if (HAS_MULTIPLE_VALUES) {
       builder.append("[");
     }
 
-    map.get(key).stream().forEach(item -> {
-      String str = "";
-
-      if (isCollection) {
-        str = "\n\t\t\"" + item + "\",";
-
-      } else {
-        str = "\"" + item + "\",";
-      }
-
-      builder.append(str);
+    map.get(key).stream().forEach(value -> {
+      builder.append(PREFIX + value + "\",");
     });
 
     if (builder.length() > 0) {
       builder.setLength(builder.length() - 1);
     }
 
-    if (isCollection) {
+    if (HAS_MULTIPLE_VALUES) {
       builder.append("\n\t]");
     }
 
