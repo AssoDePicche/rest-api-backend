@@ -51,6 +51,14 @@ CREATE TABLE IF NOT EXISTS Series (
   FOREIGN KEY (publisher) REFERENCES Publishers (id)
 );
 
+CREATE TABLE IF NOT EXISTS SeriesGenres (
+  series INT NOT NULL,
+  genre INT NOT NULL,
+  FOREIGN KEY (series) REFERENCES Series (id),
+  FOREIGN KEY (genre) REFERENCES Genres (id),
+  PRIMARY KEY (series, genre)
+);
+
 CREATE TABLE IF NOT EXISTS SeriesArtists (
   series INT NOT NULL,
   artist INT NOT NULL,
