@@ -51,6 +51,16 @@ CREATE TABLE IF NOT EXISTS Series (
   FOREIGN KEY (publisher) REFERENCES Publishers (id)
 );
 
+CREATE TABLE IF NOT EXISTS SeriesArtists (
+  series INT NOT NULL,
+  artist INT NOT NULL,
+  role INT NOT NULL,
+  FOREIGN KEY (series) REFERENCES Series (id),
+  FOREIGN KEY (artist) REFERENCES Artists (id),
+  FOREIGN KEY (role) REFERENCES ArtitstsRoles (id),
+  PRIMARY KEY (series, artist, role)
+);
+
 CREATE TABLE IF NOT EXISTS Comics (
   id INT PRIMARY KEY AUTO_INCREMENT,
   cover_price DECIMAL (6, 2) NOT NULL,
