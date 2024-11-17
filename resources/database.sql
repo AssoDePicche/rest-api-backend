@@ -77,3 +77,11 @@ CREATE TABLE IF NOT EXISTS Comics (
   series INT NOT NULL,
   FOREIGN KEY (series) REFERENCES Series (id)
 );
+
+CREATE TABLE IF NOT EXISTS UsersComics (
+  user INT NOT NULL,
+  comic INT NOT NULL,
+  FOREIGN KEY (user) REFERENCES Users (id),
+  FOREIGN KEY (comic) REFERENCES Comics (id),
+  PRIMARY KEY (user, comic)
+);
