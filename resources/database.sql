@@ -87,3 +87,12 @@ CREATE TABLE IF NOT EXISTS UsersComics (
   FOREIGN KEY (comic) REFERENCES Comics (id),
   PRIMARY KEY (user, comic)
 );
+
+CREATE TABLE IF NOT EXISTS UsersWishlists (
+  user INT NOT NULL,
+  comic INT NOT NULL,
+  added_at DATE DEFAULT CURDATE(),
+  FOREIGN KEY (user) REFERENCES Users (id),
+  FOREIGN KEY (comic) REFERENCES Comics (id),
+  PRIMARY KEY (user, comic)
+);
