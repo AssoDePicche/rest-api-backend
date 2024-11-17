@@ -81,6 +81,8 @@ CREATE TABLE IF NOT EXISTS Comics (
 CREATE TABLE IF NOT EXISTS UsersComics (
   user INT NOT NULL,
   comic INT NOT NULL,
+  purchased_by DECIMAL(6, 2),
+  purchased_at DATE,
   FOREIGN KEY (user) REFERENCES Users (id),
   FOREIGN KEY (comic) REFERENCES Comics (id),
   PRIMARY KEY (user, comic)
