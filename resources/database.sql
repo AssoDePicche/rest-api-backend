@@ -20,3 +20,11 @@ CREATE TABLE IF NOT EXISTS Artists (
   country INT NOT NULL,
   FOREIGN KEY (country) REFERENCES Countries (id)
 );
+
+CREATE TABLE IF NOT EXISTS Publishers (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(60) UNIQUE NOT NULL,
+  founded_in DATE NOT NULL,
+  country INT NOT NULL,
+  FOREIGN KEY (country) REFERENCES Countries (id)
+);
