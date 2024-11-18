@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS SeriesArtists (
 
 CREATE TABLE IF NOT EXISTS Comics (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  picture CHAR(32) NOT NULL DEFAULT 'comic-default-cover-picture',
   cover_price DECIMAL (6, 2) NOT NULL,
   pages INT NOT NULL,
   published_in DATE NOT NULL,
