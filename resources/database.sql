@@ -85,13 +85,20 @@ CREATE TABLE IF NOT EXISTS Comics (
   FOREIGN KEY (series) REFERENCES Series (id)
 );
 
+CREATE TABLE IF NOT EXISTS ComicsReadingStates (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(60) UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS UsersComics (
   user INT NOT NULL,
   comic INT NOT NULL,
   purchased_by DECIMAL(6, 2),
   purchased_at DATE,
+  reading_state INT NOT NULL,
   FOREIGN KEY (user) REFERENCES Users (id),
   FOREIGN KEY (comic) REFERENCES Comics (id),
+  FOREIGN KEY (reading_state) REFERENCES ComicsReadingStates (id)
   PRIMARY KEY (user, comic)
 );
 
