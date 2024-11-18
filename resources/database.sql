@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Countries (
 
 CREATE TABLE IF NOT EXISTS Users (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  picture CHAR(32) NOT NULL DEFAULT 'user-default-profile-picture',
   name VARCHAR(60) NOT NULL,
   surname VARCHAR(60) NOT NULL,
   username VARCHAR(30) UNIQUE NOT NULL,
