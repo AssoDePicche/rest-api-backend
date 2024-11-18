@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS ArtistsRoles (
 
 CREATE TABLE IF NOT EXISTS Publishers (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  picture CHAR(32) NOT NULL DEFAULT 'publisher-default-cover-picture',
   name VARCHAR(60) UNIQUE NOT NULL,
   founded_in DATE NOT NULL,
   country INT NOT NULL,
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS Formats (
 
 CREATE TABLE IF NOT EXISTS Series (
   id INT PRIMARY KEY AUTO_INCREMENT,
+  picture CHAR(32) NOT NULL DEFAULT 'series-default-cover-picture',
   name VARCHAR(60) UNIQUE NOT NULL,
   volumes INT DEFAULT 0,
   started_in DATE NOT NULL,
