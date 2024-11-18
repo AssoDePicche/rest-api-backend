@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS UsersComics (
   reading_state INT NOT NULL,
   FOREIGN KEY (user) REFERENCES Users (id),
   FOREIGN KEY (comic) REFERENCES Comics (id),
-  FOREIGN KEY (reading_state) REFERENCES ComicsReadingStates (id)
+  FOREIGN KEY (reading_state) REFERENCES ComicsReadingStates (id),
   PRIMARY KEY (user, comic)
 );
 
